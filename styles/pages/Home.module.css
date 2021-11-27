@@ -1,0 +1,22 @@
+.root {
+	height: 100vh;
+}
+.container {
+	height: calc(100vh - var(--header-height));
+	max-width: 1040px; /* 1440px (desktop-sized design) - 200px on both sides so I don't have to use horizontal padding and media queries */
+	margin: 0 auto;
+	padding: 50px 0;
+}
+.teams {
+	display: flex;
+	align-items: flex-start;
+	height: 100%;
+	gap: 32px;
+}
+.teams > section {
+	flex: 1;
+	height: 100%;
+	background-color: #efefef;
+	border-radius: 12px;
+	padding: 32px;
+}

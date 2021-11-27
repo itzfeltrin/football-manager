@@ -6,7 +6,12 @@
 	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
 }
-
 :root {
+	--header-height: 150px;
 	--gray-dark: #878787;
+	--red-remove: 255, 69, 69; /* like this so I can use it in rgba */
+}
+button {
+	border: none;
+	cursor: pointer;
 }
