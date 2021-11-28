@@ -8,6 +8,7 @@
 }
 :root {
 	--header-height: 150px;
+	--item-height: 56px;
 	--gray-dark: #878787;
 	--gray-darker: #535353;
 	--red-remove: 255, 69, 69; /* like this so I can use it in rgba */
@@ -50,6 +51,9 @@ select {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	background: url("/assets/dropdown.svg") no-repeat calc(100% - 16px) center;
+}
+input:disabled {
+	cursor: not-allowed;
 }
 input[type="checkbox"] {
 	appearance: none;

@@ -32,3 +32,30 @@
 .button.remove > span {
 	color: rgb(var(--red-remove));
 }
+.player {
+	height: var(--item-height);
+	background: #fff;
+	border-radius: 8px;
+	padding: 0 16px;
+	display: flex;
+}
+.player > span {
+	line-height: var(--item-height);
+}
+.player .name {
+	font-size: 24px;
+}
+.player .position {
+	font-weight: 300;
+	font-size: 20px;
+}
+.player .action-buttons {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 16px;
+}
+.player .action-buttons > button {
+	background: transparent;
+}

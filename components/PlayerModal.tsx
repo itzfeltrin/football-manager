@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import Image from "next/image";
 import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -12,6 +12,8 @@ import classes from "../styles/components/PlayerModal.module.css";
 type PlayerModalProps = {
 	isVisible: boolean;
 	onClose(): void;
+	editing: PlayerData | null;
+	onSubmit(values: PlayerData): void;
 };
 
 const formSchema: yup.SchemaOf<PlayerData> = yup.object({
@@ -39,22 +41,28 @@ const positions = [
 	"atacante",
 ];
 
-export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
+export const PlayerModal = ({
+	isVisible,
+	onClose,
+	editing,
+	onSubmit,
+}: PlayerModalProps) => {
 	const {
 		register,
+		reset,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<PlayerData>({
 		resolver: yupResolver(formSchema),
-		defaultValues,
 	});
 
-	const handleFormSubmit = useCallback<SubmitHandler<PlayerData>>(
-		(values) => {
-			console.log(values);
-		},
-		[]
-	);
+	useEffect(() => {
+		if (editing) {
+			reset(editing);
+		} else {
+			reset(defaultValues);
+		}
+	}, [editing, reset]);
 
 	return (
 		<AnimatePresence>
@@ -70,7 +78,7 @@ export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
 						transition={{ duration: 0.33 }}
 					>
 						<form
-							onSubmit={handleSubmit(handleFormSubmit)}
+							onSubmit={handleSubmit(onSubmit)}
 							className={classes.content}
 						>
 							<h1 className={classes.title}>
@@ -92,17 +100,20 @@ export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
 								<Input
 									label="Nome completo"
 									error={errors.fullName}
+									disabled={Boolean(editing)}
 									{...register("fullName")}
 								/>
 								<Input
 									label="Data de nascimento"
 									error={errors.birthDate}
 									type="date"
+									disabled={Boolean(editing)}
 									{...register("birthDate")}
 								/>
 								<Input
 									label="CPF"
 									error={errors.cpf}
+									disabled={Boolean(editing)}
 									{...register("cpf")}
 								/>
 								<Select
