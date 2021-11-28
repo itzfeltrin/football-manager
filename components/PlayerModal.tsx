@@ -84,9 +84,7 @@ export const PlayerModal = ({
 							onSubmit={handleSubmit(onSubmit)}
 							className={classes.content}
 						>
-							<h1 className={classes.title}>
-								Adicionar novo jogador
-							</h1>
+							<h1 className={classes.title}>Adicionar jogador</h1>
 							<button
 								type="button"
 								onClick={onClose}

@@ -1,5 +1,6 @@
 .header {
 	width: 100%;
+	padding: 0 2.5vw;
 	height: var(--header-height);
 	background-color: var(--gray-dark);
 	display: flex;
@@ -8,6 +9,23 @@
 	gap: 16px;
 }
 .title {
-	font-size: 64px;
+	font-size: 56px;
 	color: #fff;
+}
+.ball {
+	--ball-size: calc(var(--header-height) / 2);
+	width: var(--ball-size);
+	height: var(--ball-size);
+}
+
+@media screen and (max-width: 680px) {
+	.title {
+		font-size: 40px;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.title {
+		font-size: 32px;
+	}
 }

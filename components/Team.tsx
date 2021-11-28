@@ -95,7 +95,7 @@ export const Team = ({ id }: TeamProps): JSX.Element => {
 						width={20}
 						height={20}
 					/>
-					<span>Adicionar novo jogador</span>
+					<span>Adicionar jogador</span>
 				</button>
 				<AnimateSharedLayout>
 					<motion.ul className={classes.players}>

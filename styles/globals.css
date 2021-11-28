@@ -31,7 +31,7 @@ button {
 }
 .form-group:not(.checkbox) > input, /*  */
 .form-group > select {
-	height: 56px;
+	height: var(--item-height);
 	background-color: rgba(196, 196, 196, 0.25);
 	border: none;
 	border-radius: 8px;
@@ -82,4 +82,11 @@ input[type="checkbox"]:checked {
 }
 input[type="checkbox"]:checked::before {
 	transform: translateX(calc(100% - 4px));
+}
+
+@media screen and (max-width: 680px) {
+	:root {
+		--header-height: 100px;
+		--item-height: 48px;
+	}
 }

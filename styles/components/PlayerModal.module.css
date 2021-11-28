@@ -10,7 +10,7 @@
 	z-index: 1;
 }
 .content {
-	width: clamp(280px, 90vw, 680px);
+	width: clamp(240px, 95vw, 680px);
 	/* height: 400px; */
 	background-color: #fff;
 	border-radius: 16px;
@@ -21,7 +21,7 @@
 	position: relative;
 }
 .title {
-	font-size: 32px;
+	font-size: 24px;
 	font-weight: 500;
 }
 .close-button {
@@ -36,7 +36,7 @@
 }
 .grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 	gap: 16px;
 	margin: 48px 0;
 }
@@ -47,7 +47,7 @@
 }
 .submit-button {
 	width: calc(50% - 8px); /* 16px is half the gap between the grid items */
-	height: 56px;
+	height: var(--item-height);
 	grid-column: span 2;
 	align-self: flex-end;
 	border-radius: 8px;
@@ -58,4 +58,10 @@
 }
 .submit-button:hover {
 	background-color: var(--gray-darker);
+}
+
+@media screen and (max-width: 480px) {
+	.content {
+		padding: 16px;
+	}
 }

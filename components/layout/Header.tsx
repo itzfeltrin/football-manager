@@ -6,8 +6,9 @@ export const Header = (): JSX.Element => (
 		<Image
 			src="/assets/ball.svg"
 			alt="Bola de futebol"
-			width={72}
-			height={72}
+			width={48}
+			height={48}
+			className={classes.ball}
 		/>
 		<h1 className={classes.title}>Gerenciador de Fut</h1>
 	</header>
