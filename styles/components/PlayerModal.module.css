@@ -18,6 +18,21 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	position: relative;
+}
+.title {
+	font-size: 32px;
+	font-weight: 500;
+}
+.close-button {
+	position: absolute;
+	top: 32px;
+	right: 32px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	z-index: 2;
+	transform: rotate(45deg);
 }
 .grid {
 	display: grid;

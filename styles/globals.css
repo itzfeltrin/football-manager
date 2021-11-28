@@ -23,7 +23,12 @@ button {
 	position: relative;
 	gap: 8px;
 }
-.form-group > input,
+.form-group.checkbox {
+	flex-direction: row-reverse;
+	align-items: center;
+	justify-content: flex-end;
+}
+.form-group:not(.checkbox) > input, /*  */
 .form-group > select {
 	height: 56px;
 	background-color: rgba(196, 196, 196, 0.25);
@@ -45,4 +50,32 @@ select {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	background: url("/assets/dropdown.svg") no-repeat calc(100% - 16px) center;
+}
+input[type="checkbox"] {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+	width: 32px;
+	height: 20px;
+	background-color: var(--gray-dark);
+	border-radius: 12px;
+	transition: background-color 0.3s ease-out;
+}
+input[type="checkbox"]::before {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background-color: #fff;
+	border-radius: 8px;
+	transition: transform 0.3s ease-out;
+}
+input[type="checkbox"]:checked {
+	background-color: #11ce24;
+}
+input[type="checkbox"]:checked::before {
+	transform: translateX(calc(100% - 4px));
 }

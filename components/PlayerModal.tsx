@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import Image from "next/image";
 import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
@@ -72,7 +73,21 @@ export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
 							onSubmit={handleSubmit(handleFormSubmit)}
 							className={classes.content}
 						>
-							<h1>Adicionar novo jogador</h1>
+							<h1 className={classes.title}>
+								Adicionar novo jogador
+							</h1>
+							<button
+								type="button"
+								onClick={onClose}
+								className={classes["close-button"]}
+							>
+								<Image
+									src="/assets/plus.svg"
+									alt="Botão para fechar modal"
+									width={20}
+									height={20}
+								/>
+							</button>
 							<div className={classes.grid}>
 								<Input
 									label="Nome completo"
@@ -100,6 +115,12 @@ export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
 										Selecione uma posição
 									</option>
 								</Select>
+								<Input
+									label="É reserva?"
+									error={errors.isSub}
+									type="checkbox"
+									{...register("isSub")}
+								/>
 							</div>
 							<div className={classes["button-wrapper"]}>
 								<button

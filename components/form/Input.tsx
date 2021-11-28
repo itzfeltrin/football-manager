@@ -10,7 +10,11 @@ const BaseInput = (
 	{ label, error, ...props }: InputProps,
 	ref: React.LegacyRef<HTMLInputElement> | undefined
 ) => (
-	<div className={`form-group ${error ? "invalid" : ""}`}>
+	<div
+		className={`form-group ${error ? "invalid" : ""} ${
+			props.type === "checkbox" ? "checkbox" : ""
+		}`}
+	>
 		<label htmlFor={props.id}>{label}</label>
 		<input {...props} ref={ref} />
 		{error && <span>{error.message}</span>}
