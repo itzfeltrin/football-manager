@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
 import Image from "next/image";
 import * as yup from "yup";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { AnimatePresence, motion } from "framer-motion";
 import { Input } from "./form/Input";
@@ -48,9 +48,8 @@ export const PlayerModal = ({
 	onSubmit,
 }: PlayerModalProps) => {
 	const {
-		register,
+		control,
 		reset,
-		setValue,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<PlayerData>({
@@ -62,12 +61,11 @@ export const PlayerModal = ({
 		if (isVisible) {
 			if (editing) {
 				reset(editing);
-				setValue("cpf", editing.cpf);
 			} else {
 				reset(defaultValues);
 			}
 		}
-	}, [editing, reset, isVisible, setValue]);
+	}, [editing, isVisible, reset]);
 
 	return (
 		<AnimatePresence>
@@ -102,41 +100,72 @@ export const PlayerModal = ({
 								/>
 							</button>
 							<div className={classes.grid}>
-								<Input
-									label="Nome completo"
-									error={errors.fullName}
-									disabled={Boolean(editing)}
-									{...register("fullName")}
+								<Controller
+									render={({ field }) => (
+										<Input
+											label="Nome completo"
+											error={errors.fullName}
+											disabled={Boolean(editing)}
+											{...field}
+										/>
+									)}
+									control={control}
+									name="fullName"
 								/>
-								<Input
-									label="Data de nascimento"
-									error={errors.birthDate}
-									type="date"
-									disabled={Boolean(editing)}
-									{...register("birthDate")}
+								<Controller
+									render={({ field }) => (
+										<Input
+											label="Data de nascimento"
+											error={errors.birthDate}
+											type="date"
+											disabled={Boolean(editing)}
+											{...field}
+										/>
+									)}
+									control={control}
+									name="birthDate"
 								/>
-								<Input
-									label="CPF"
-									error={errors.cpf}
-									disabled={Boolean(editing)}
-									mask="999.999.999-99"
-									{...register("cpf")}
+								<Controller
+									render={({ field }) => (
+										<Input
+											label="CPF"
+											error={errors.cpf}
+											disabled={Boolean(editing)}
+											mask="999.999.999-99"
+											{...field}
+										/>
+									)}
+									control={control}
+									name="cpf"
 								/>
-								<Select
-									label="Posição"
-									error={errors.position}
-									options={positions}
-									{...register("position")}
-								>
-									<option value="">
-										Selecione uma posição
-									</option>
-								</Select>
-								<Input
-									label="É reserva?"
-									error={errors.isSub}
-									type="checkbox"
-									{...register("isSub")}
+								<Controller
+									render={({ field }) => (
+										<Select
+											label="Posição"
+											error={errors.position}
+											options={positions}
+											{...field}
+										>
+											<option value="">
+												Selecione uma posição
+											</option>
+										</Select>
+									)}
+									control={control}
+									name="position"
+								/>
+								<Controller
+									render={({ field }) => (
+										<Input
+											label="É reserva?"
+											error={errors.isSub}
+											type="checkbox"
+											checked={field.value}
+											onChange={field.onChange}
+										/>
+									)}
+									control={control}
+									name="isSub"
 								/>
 							</div>
 							<div className={classes["button-wrapper"]}>
