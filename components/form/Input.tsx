@@ -1,14 +1,16 @@
 import React from "react";
+import InputMask, { Props as InputMaskProps } from "react-input-mask";
 import { FieldError } from "react-hook-form";
 
 type InputProps = {
 	label: string;
 	error?: FieldError;
-} & React.InputHTMLAttributes<HTMLInputElement>;
+	mask?: string;
+} & Omit<InputMaskProps, "mask">;
 
 const BaseInput = (
-	{ label, error, ...props }: InputProps,
-	ref: React.LegacyRef<HTMLInputElement> | undefined
+	{ label, error, mask = "", ...props }: InputProps,
+	ref: React.LegacyRef<InputMask> | undefined
 ) => (
 	<div
 		className={`form-group ${error ? "invalid" : ""} ${
@@ -16,9 +18,13 @@ const BaseInput = (
 		}`}
 	>
 		<label htmlFor={props.id}>{label}</label>
-		<input {...props} ref={ref} />
+		{mask === "" ? (
+			<input {...props} ref={ref as React.LegacyRef<HTMLInputElement>} />
+		) : (
+			<InputMask mask={mask} {...props} ref={ref} />
+		)}
 		{error && <span>{error.message}</span>}
 	</div>
 );
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(BaseInput);
+export const Input = React.forwardRef<InputMask, InputProps>(BaseInput);

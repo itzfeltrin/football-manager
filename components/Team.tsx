@@ -17,30 +17,35 @@ export const Team = ({ id }: TeamProps): JSX.Element => {
 	const [isModalVisible, toggleModal] = useReducer((prev) => !prev, false);
 	const [editing, setEditing] = useState<PlayerData | null>(null);
 
+	const handleCloseModal = useCallback(() => {
+		toggleModal();
+		setEditing(null);
+	}, []);
+
 	const handleSubmitPlayer = useCallback(
 		(values: PlayerData) => {
+			const playerObj = { ...values, cpf: values.cpf.replace(/\D/g, "") }; // to save raw cpf value
 			if (editing) {
 				setPlayers((prev) => {
 					const arr = [...prev];
 					const playerIndex = prev.findIndex(
-						(player) => player.cpf === editing.cpf
+						(player) => player.cpf === playerObj.cpf
 					);
-					arr[playerIndex] = values;
+					arr[playerIndex] = playerObj;
 					return arr;
 				});
 			} else {
-				if (players.find((player) => player.cpf === values.cpf)) {
+				if (players.find((player) => player.cpf === playerObj.cpf)) {
 					alert(
 						`Já existe um jogador com esse CPF cadastrado no time ${id}`
 					);
 					return; // can't add player with the same cpf
 				}
-				setPlayers((prev) => [...prev, values]);
+				setPlayers((prev) => [...prev, playerObj]);
 			}
-			toggleModal();
-			setEditing(null);
+			handleCloseModal();
 		},
-		[editing, id, players]
+		[editing, handleCloseModal, id, players]
 	);
 
 	const firstRun = useRef(true);
@@ -147,7 +152,7 @@ export const Team = ({ id }: TeamProps): JSX.Element => {
 			</div>
 			<PlayerModal
 				isVisible={isModalVisible}
-				onClose={toggleModal}
+				onClose={handleCloseModal}
 				editing={editing}
 				onSubmit={handleSubmitPlayer}
 			/>

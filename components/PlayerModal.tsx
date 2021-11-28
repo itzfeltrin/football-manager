@@ -114,6 +114,7 @@ export const PlayerModal = ({
 									label="CPF"
 									error={errors.cpf}
 									disabled={Boolean(editing)}
+									mask="999.999.999-99"
 									{...register("cpf")}
 								/>
 								<Select
