@@ -3,7 +3,8 @@ import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup/dist/yup";
 import { AnimatePresence, motion } from "framer-motion";
-import { Input } from "./Input";
+import { Input } from "./form/Input";
+import { Select } from "./form/Select";
 import type { PlayerData } from "../types/player";
 import classes from "../styles/components/PlayerModal.module.css";
 
@@ -27,6 +28,15 @@ const defaultValues: PlayerData = {
 	position: "",
 	isSub: false,
 };
+
+const positions = [
+	"goleiro",
+	"lateral",
+	"zagueiro",
+	"volante",
+	"meia",
+	"atacante",
+];
 
 export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
 	const {
@@ -53,7 +63,6 @@ export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
 						onClick={(e) => {
 							e.stopPropagation();
 						}}
-						// className={classes.content}
 						initial={{ opacity: 0, scale: 0.25 }}
 						animate={{ opacity: 1, scale: 1 }}
 						exit={{ opacity: 0, scale: 0.25 }}
@@ -81,6 +90,16 @@ export const PlayerModal = ({ isVisible, onClose }: PlayerModalProps) => {
 									error={errors.cpf}
 									{...register("cpf")}
 								/>
+								<Select
+									label="Posição"
+									error={errors.position}
+									options={positions}
+									{...register("position")}
+								>
+									<option value="">
+										Selecione uma posição
+									</option>
+								</Select>
 							</div>
 							<div className={classes["button-wrapper"]}>
 								<button

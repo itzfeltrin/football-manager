@@ -16,3 +16,33 @@ button {
 	border: none;
 	cursor: pointer;
 }
+/* form related */
+.form-group {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	gap: 8px;
+}
+.form-group > input,
+.form-group > select {
+	height: 56px;
+	background-color: rgba(196, 196, 196, 0.25);
+	border: none;
+	border-radius: 8px;
+	padding: 0 16px;
+	font-size: 16px;
+}
+.form-group.invalid > input,
+.form-group.invalid > select {
+	outline: 2px solid rgb(var(--red-remove));
+}
+.form-group.invalid > label,
+.form-group.invalid > span {
+	color: rgb(var(--red-remove));
+}
+select {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background: url("/assets/dropdown.svg") no-repeat calc(100% - 16px) center;
+}

@@ -11,7 +11,7 @@
 }
 .content {
 	width: clamp(280px, 90vw, 680px);
-	height: 400px;
+	/* height: 400px; */
 	background-color: #fff;
 	border-radius: 16px;
 	padding: 32px;
@@ -23,6 +23,7 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 16px;
+	margin: 48px 0;
 }
 .button-wrapper {
 	width: 100%;
@@ -36,7 +37,7 @@
 	align-self: flex-end;
 	border-radius: 8px;
 	background-color: var(--gray-dark);
-	font-size: 24px;
+	font-size: 20px;
 	color: #fff;
 	transition: background-color 0.3s ease-out;
 }

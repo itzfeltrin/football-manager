@@ -1,5 +1,5 @@
 import Image from "next/image";
-import classes from "../styles/components/Header.module.css";
+import classes from "../../styles/components/Header.module.css";
 
 export const Header = (): JSX.Element => (
 	<header className={classes.header}>
