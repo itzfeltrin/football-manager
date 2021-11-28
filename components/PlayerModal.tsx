@@ -50,19 +50,24 @@ export const PlayerModal = ({
 	const {
 		register,
 		reset,
+		setValue,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<PlayerData>({
 		resolver: yupResolver(formSchema),
+		defaultValues,
 	});
 
 	useEffect(() => {
-		if (editing) {
-			reset(editing);
-		} else {
-			reset(defaultValues);
+		if (isVisible) {
+			if (editing) {
+				reset(editing);
+				setValue("cpf", editing.cpf);
+			} else {
+				reset(defaultValues);
+			}
 		}
-	}, [editing, reset]);
+	}, [editing, reset, isVisible, setValue]);
 
 	return (
 		<AnimatePresence>

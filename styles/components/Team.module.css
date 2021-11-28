@@ -32,6 +32,11 @@
 .button.remove > span {
 	color: rgb(var(--red-remove));
 }
+.players {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
 .player {
 	height: var(--item-height);
 	background: #fff;
