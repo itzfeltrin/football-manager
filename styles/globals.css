@@ -9,6 +9,7 @@
 :root {
 	--header-height: 150px;
 	--gray-dark: #878787;
+	--gray-darker: #535353;
 	--red-remove: 255, 69, 69; /* like this so I can use it in rgba */
 }
 button {
