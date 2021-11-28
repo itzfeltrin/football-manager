@@ -83,7 +83,7 @@ export const Team = ({ id }: TeamProps): JSX.Element => {
 	return (
 		<>
 			<div className={classes.container}>
-				<h3 className={classes.title}>Time {id}</h3>
+				<h2 className={classes.title}>Time {id}</h2>
 				<button
 					type="button"
 					onClick={toggleModal}
